@@ -13,35 +13,58 @@
 </head>
 
 <body>
-    <main>
-        <div id="hero">
-            <div id="title">Bookify</div>
-            <div id="caption">Track Your Reading Journey.</div>
-        </div>
-        <form id="addBook">
-            <input type="text" id="userInput" placeholder="Insert Book Title Here..." required>
-            <button type="submit" id="submitBook">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </form>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close">
-                    <i class="close fa-solid fa-right-from-bracket"></i>
-                </span>
-                <p id="modalText"></p>
+    <div id="mainContainer">
+        <main>
+            <div id="hero">
+                <div id="title">Bookify</div>
+                <div id="caption">Track Your Reading Journey.</div>
             </div>
-        </div>
-        <div id="userBooks">
-            <div id="booksHeader">Your Books</div>
-            <div id="booksContainer">
-                <div class="book"></div>
-                <div class="book"></div>
-                <div class="book"></div>
-                <div class="book"></div>
-                <div class="book"></div>
+            <form id="addBook">
+                <input class="mainForm" type="text" name="bookTitle" id="bookTitle" placeholder="Enter book title" required>
+                <button type="submit" id="submitBook">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+            <div id="myModal" class="modal">
+                <div class="modalContent">
+                    <span class="close">
+                        <i class="close fa-solid fa-right-from-bracket"></i>
+                    </span>
+                    <div id="modalFormContainer">
+                        <p id="modalText"></p>
+                        <form id="modalAddBook">
+                            <input class="modalForm" type="text" id="bookAuthor" placeholder="Author" required>
+                            <input class="modalForm" type="text" id="bookPageCount" placeholder="Page Count" required>
+                            <div class="formRadio">
+                                Have you read it?
+                            </div>
+                            <div class="radioContainer">
+                                <div class="radioOption">
+                                    <input type="radio" id="haveReadTrue" name="haveReadTrue" value="haveReadTrue" required>
+                                    <label class="formRadio" for="haveReadTrue">Yes</label><br>
+                                </div>
+                                <div class="radioOption">
+                                    <input type="radio" id="haveReadFalse" name="haveReadTrue" value="haveReadTrue" required>
+                                    <label class="formRadio" for="haveReadFalse">No</label><br>
+                                </div>    
+                            </div>
+                            <button id="submitModal" type="submit">Add Book</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
+            <div id="userBooks">
+                <div id="booksHeader">Your Books</div>
+                <div id="booksContainer">
+                    <div class="book"></div>
+                    <div class="book"></div>
+                    <div class="book"></div>
+                    <div class="book"></div>
+                    <div class="book"></div>
+                    <div class="book"></div>
+                </div>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
