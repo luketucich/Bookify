@@ -13,58 +13,40 @@
 </head>
 
 <body>
-    <div id="mainContainer">
-        <main>
-            <div id="hero">
-                <div id="title">Bookify</div>
-                <div id="caption">Track Your Reading Journey.</div>
+    <div id="modal">
+        <div id="modalWindow">
+            <i id="closeModal" class="fa-solid fa-right-from-bracket"></i>
+            <div id="modalFormContainer">
+                <p id="bookTitle"></p>
+                <form id="modalForm">
+                    <input class="modalFormInput" type="text" id="bookAuthor" placeholder="Author" required>
+                    <input class="modalFormInput" type="number" id="bookPageCount" placeholder="Page Count" required>
+                </form>
             </div>
-            <form id="addBook">
-                <input class="mainForm" type="text" name="bookTitle" id="bookTitle" placeholder="Enter book title" required>
-                <button type="submit" id="submitBook">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </form>
-            <div id="myModal" class="modal">
-                <div class="modalContent">
-                    <span class="close">
-                        <i class="close fa-solid fa-right-from-bracket"></i>
-                    </span>
-                    <div id="modalFormContainer">
-                        <p id="modalText"></p>
-                        <form id="modalAddBook">
-                            <input class="modalForm" type="text" id="bookAuthor" placeholder="Author" required>
-                            <input class="modalForm" type="text" id="bookPageCount" placeholder="Page Count" required>
-                            <div class="formRadio">
-                                Have you read it?
-                            </div>
-                            <div class="radioContainer">
-                                <div class="radioOption">
-                                    <input type="radio" id="haveReadTrue" name="haveReadTrue" value="haveReadTrue" required>
-                                    <label class="formRadio" for="haveReadTrue">Yes</label><br>
-                                </div>
-                                <div class="radioOption">
-                                    <input type="radio" id="haveReadFalse" name="haveReadTrue" value="haveReadTrue" required>
-                                    <label class="formRadio" for="haveReadFalse">No</label><br>
-                                </div>    
-                            </div>
-                            <button id="submitModal" type="submit">Add Book</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div id="userBooks">
-                <div id="booksHeader">Your Books</div>
-                <div id="booksContainer">
-                    <div class="book"></div>
-                    <div class="book"></div>
-                    <div class="book"></div>
-                    <div class="book"></div>
-                    <div class="book"></div>
-                    <div class="book"></div>
-                </div>
-            </div>
-        </main>
+        </div>
     </div>
+    <main>
+        <div id="heroContainer">
+            <div id="heroTitle">Bookify</div>
+            <div id="heroCaption">Track Your Reading Journey.</div>
+        </div>
+        <form id="mainForm">
+            <input type="text" name="bookTitle" id="mainFormInput" placeholder="Enter book title" required>
+            <button type="submit" id="mainFormSubmit">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+        <div id="userBooks">
+            <div id="booksHeader">Your Books</div>
+            <div id="booksContainer">
+                <div class="book"></div>
+                <div class="book"></div>
+                <div class="book"></div>
+                <div class="book"></div>
+                <div class="book"></div>
+                <div class="book"></div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

@@ -1,10 +1,12 @@
+/* Root, html, body, main, and * styling */
 :root {
     --primary: rgb(30, 30, 30);
     --secondary: rgb(255, 255, 255);
     font-size: 16px;
 }
 
-html, body {
+html{
+    background-color: black;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -22,10 +24,6 @@ body {
     color: var(--secondary);
 }
 
-*{
-    font-family: 'Roboto', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
 main{
     display: flex;
     flex-direction: column;
@@ -34,57 +32,68 @@ main{
     padding-top: 5rem;
 }
 
-#hero{
+*{
+    font-family: 'Roboto', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+/* Hero styling */
+#heroContainer{
     padding-bottom: 4rem;
 }
 
-#title{
+#heroTitle{
     font-size: 7rem;
     font-weight: 300;
 }
 
-#caption{
+#heroCaption{
     font-size: 1.78rem;
     font-weight: 200;
 }
 
-#addBook{
+
+/* Main form styling */
+#mainForm{
     display: flex;
     align-items: center;
     padding-bottom: 10rem;
 }
 
-#submitBook{
+#mainFormSubmit{
     border: none;
     background-color: rgba(0, 0, 0, 0);
 }
 
-.fa-solid{
+.fa-arrow-right{
     color: var(--secondary);
     font-size: 2rem;
     transition: 1s;
 }
 
-.fa-solid:hover{
+.fa-arrow-right:hover{
     cursor: grab;
     font-size: 3rem;
     transition: 0.5s;
 }
 
-.mainForm{
+#mainFormInput{
     padding: 1rem 10rem 1rem 10rem;
     border-radius: 2rem;
     text-align: center;
     transition: 1s;
 }
 
-.mainForm:hover,
-.mainForm:focus{
+#mainFormInput:hover,
+#mainFormInput:focus{
     font-size: 2rem;
     outline: none;
     transition: 0.5s;
 }
 
+
+
+/* User book's styling */
 #userBooks{
     display: flex;
     flex-direction: column;
@@ -111,18 +120,19 @@ main{
     border-radius: 1rem;
 }
 
-/* Modal Styles */
-#myModal {
+
+/* Modal styling */
+#modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Fix to viewport */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
-    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent red background */
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
-.modalContent {
+#modalWindow {
     margin: auto;
     margin-top: 15vh;
     left: 50vw;
@@ -135,12 +145,16 @@ main{
 }
 
 #modalFormContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     height: 90%;
     width: 100%;
     padding-top: 3rem;
 }
 
-#modalText{
+#bookTitle{
     font-size: 2rem;
     white-space: nowrap; 
     overflow: hidden;
@@ -150,48 +164,13 @@ main{
     cursor: grab;
 }
 
-#modalAddBook{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.modalForm{
+.modalFormInput{
     width: calc(100% - 10rem);
     font-size: 1.5rem;
     text-align: center;
     border: 0.1rem solid;
     border-radius: 1rem;
     padding: 0.5rem 0;
-}
-
-.formRadio{
-    color: var(--primary);
-    font-size: 1.5rem;
-}
-
-.radioContainer{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.radioOption{
-    color: var(--primary);
-    font-size: 1.5rem;
-}
-
-#submitModal{
-    text-align: center;
-    background-color: var(--secondary);
-    border-radius: 1rem;
-    color: var(--primary);
-    padding: 1rem;
-    margin-top: 3rem;
-    cursor: grab;
 }
 
 .close {

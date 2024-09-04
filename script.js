@@ -9,19 +9,24 @@ function Book(author, title, pages, hasRead) {
     this.hasRead = hasRead
 };
 
-document.getElementById('addBook').addEventListener('submit', function(event) {
+// Opens modal and inputs book title when user clicks right-arrow icon
+document.getElementById('mainForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting normally
 
-    var bookTitle = document.getElementById('bookTitle').value;
-    document.getElementById('modalText').textContent = bookTitle;
+    console.log('test');
+    // Sets modal's form text to be user's input for the book title
+    var bookTitle = document.getElementById('mainFormInput').value;
+    document.getElementById('bookTitle').textContent = bookTitle;
 
-    var modal = document.getElementById('myModal');
+    // Adjusts modal display style to be visible
+    var modal = document.getElementById('modal');
     modal.style.display = 'block';
 });
 
-document.querySelector('.close').addEventListener('click', function() {
-    var modal = document.getElementById('myModal');
+// Closes modal and resets form when user clicks exit icon
+document.getElementById('closeModal').addEventListener('click', function() {
+    var modal = document.getElementById('modal');
     modal.style.display = 'none';
-    document.getElementById('addBook').reset();
-    document.getElementById('modalAddBook').reset();
+    document.getElementById('mainForm').reset();
+    document.getElementById('modalForm').reset();
 });
