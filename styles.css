@@ -82,6 +82,7 @@ main{
     border-radius: 2rem;
     text-align: center;
     transition: 1s;
+    font-weight: 300;
 }
 
 #mainFormInput:hover,
@@ -157,35 +158,69 @@ main{
 #bookTitle{
     font-size: 2rem;
     white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
     color: var(--primary);
-    font-weight: 400;
+    font-weight: 500;
     cursor: grab;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+#modalForm{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex-grow: 1;
 }
 
 .modalFormInput{
     width: calc(100% - 10rem);
     font-size: 1.5rem;
+    font-weight: 300;
     text-align: center;
     border: 0.1rem solid;
     border-radius: 1rem;
     padding: 0.5rem 0;
+    transition: 1s;
 }
 
-.close {
+.modalFormInput:hover,
+.modalFormInput:focus{
+    transition: 0.5s;
+    padding: 0.8rem;
+}
+
+#modalFormSubmit{
+    background-color: var(--primary);
+    color: var(--secondary);
+    border-radius: 1rem;
+    border: 0.1rem solid;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 1rem 2rem 1rem 2rem;
+    transition: 1s;
+}
+
+#modalFormSubmit:hover{
+    padding: 1.2rem 2.2rem 1.2rem 2.2rem;
+    transition: 0.5s;
+    cursor: grab;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+#closeModal {
     color: var(--primary);
     float: right;
     font-size: 2rem;
-    font-weight: bold;
-    transition: 0.5;
+    transition: 0.5s;
 }
 
-.close:hover,
-.close:focus {
-    transition: 0.5;
-    color: var(--primary);
-    text-decoration: none;
+#closeModal:hover,
+#closeModal:focus {
     cursor: grab;
     font-size: 2.5rem;
+    transition: 0.5s;
 }
