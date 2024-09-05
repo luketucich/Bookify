@@ -13,14 +13,18 @@ html{
 }
 
 body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     text-align: center;
     background:
-        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), /* Gradient overlay */
-        url('background.jpg'); /* Background image */
-    background-size: cover; /* Ensure the background image covers the entire body */
-    background-repeat: repeat; /* Prevent repeating the background image */
-    background-position: center; /* Center the background image */
+        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), 
+        url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--secondary);
 }
 
@@ -57,41 +61,42 @@ main{
 #mainForm{
     display: flex;
     align-items: center;
-    padding-bottom: 10rem;
+    justify-content: flex-end;
+    transition: 1s;
+    margin-bottom: 15rem;
+}
+
+#mainForm:hover{
+    transition: 0.5s;
+    transform: scale(1.5);
 }
 
 #mainFormSubmit{
+    margin-right: 0.5rem;
+    position: absolute;
+    padding-left: 1rem;
     border: none;
     background-color: rgba(0, 0, 0, 0);
 }
 
 .fa-arrow-right{
-    color: var(--secondary);
+    color: rgba(0, 0, 0, 0.5);
     font-size: 2rem;
-    transition: 1s;
-}
-
-.fa-arrow-right:hover{
-    cursor: grab;
-    font-size: 3rem;
-    transition: 0.5s;
 }
 
 #mainFormInput{
+    border: none;
     padding: 1rem 10rem 1rem 10rem;
     border-radius: 2rem;
     text-align: center;
-    transition: 1s;
     font-weight: 300;
+    font-size: 1rem;
 }
 
 #mainFormInput:hover,
 #mainFormInput:focus{
-    font-size: 2rem;
     outline: none;
-    transition: 0.5s;
 }
-
 
 
 /* User book's styling */
@@ -103,22 +108,41 @@ main{
 }
 
 #booksHeader{
-    font-size: 1.5rem;
-    font-weight: 200;
+    font-size: 2rem;
+    font-weight: 300;
 }
 
 #booksContainer{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, auto);
     gap: 1rem;
     justify-content: center;
     align-content: center; 
 }
 
 .book{
+    display: grid;
+    overflow: hidden;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.6);
-    padding: clamp(5rem,10vw,8rem);
+    grid-template-rows: 0.5fr 3fr;
+    width: 15rem;
+    height: 20rem;
     border-radius: 1rem;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--primary);
+}
+
+.book:hover{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#libraryBookTitle{
+    height: 100%;
+    padding-top: 0.5rem;
+    font-weight: 500;
+    background-color: rgba(79, 79, 79, 0.6);
 }
 
 
@@ -160,7 +184,7 @@ main{
     white-space: nowrap; 
     color: var(--primary);
     font-weight: 500;
-    cursor: grab;
+    cursor: pointer;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
@@ -186,41 +210,35 @@ main{
     transition: 1s;
 }
 
-.modalFormInput:hover,
-.modalFormInput:focus{
-    transition: 0.5s;
-    padding: 0.8rem;
-}
-
 #modalFormSubmit{
-    background-color: var(--primary);
-    color: var(--secondary);
+    background-color: var(--secondary);
+    color: var(--primary);
     border-radius: 1rem;
     border: 0.1rem solid;
     font-size: 1.5rem;
     font-weight: 500;
     padding: 1rem 2rem 1rem 2rem;
-    transition: 1s;
 }
 
 #modalFormSubmit:hover{
     padding: 1.2rem 2.2rem 1.2rem 2.2rem;
-    transition: 0.5s;
-    cursor: grab;
-    background-color: var(--secondary);
-    color: var(--primary);
+    background-color: var(--primary);
+    color: var(--secondary);
 }
 
 #closeModal {
     color: var(--primary);
     float: right;
     font-size: 2rem;
-    transition: 0.5s;
 }
 
-#closeModal:hover,
-#closeModal:focus {
-    cursor: grab;
-    font-size: 2.5rem;
+/* Universal styling (applied to various sections) */
+.animatedButton{
+    transition: 1s;
+}
+
+.animatedButton:hover{
+    cursor: pointer;
     transition: 0.5s;
+    transform: scale(1.2);
 }

@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
     <script src="script.js" defer></script>
     <title>Bookify</title>
 </head>
@@ -16,7 +20,7 @@
     <!-- Modal -->
     <div id="modal">
         <div id="modalWindow">
-            <i id="closeModal" class="fa-solid fa-right-from-bracket"></i>
+            <i id="closeModal" class="animatedButton fa-solid fa-right-from-bracket"></i>
             <div id="modalFormContainer">
                 <p id="bookTitle"></p>
                 <form id="modalForm">
@@ -38,19 +42,27 @@
         </div>
         <form id="mainForm">
             <input type="text" name="bookTitle" id="mainFormInput" placeholder="Enter book title" required>
-            <button type="submit" id="mainFormSubmit">
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            <button type="submit" id="mainFormSubmit"><i class="animatedButton fa-solid fa-arrow-right"></i></button>
         </form>
         <div id="userBooks">
             <div id="booksHeader">Your Library</div>
             <div id="booksContainer">
-                <div class="book"></div>
-                <div class="book"></div>
-                <div class="book"></div>
-                <div class="book"></div>
-                <div class="book"></div>
-                <div class="book"></div>
+                <div class="book">
+                    <div id="libraryBookTitle">Title</div>
+                    <div id="libraryBookDescContainer">
+                        <div id="libraryBookAuthor">Author</div>
+                        <div id="libraryBookPageCount">Page Count</div>
+                        <button id="libraryRemoveBook">Remove</button>
+                    </div>
+                </div>
+                <div class="book">
+                    <div id="libraryBookTitle">Title</div>
+                    <div id="libraryBookDescContainer">
+                        <div id="libraryBookAuthor">Author</div>
+                        <div id="libraryBookPageCount">Page Count</div>
+                        <button class="libraryRemoveBook">Remove</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
