@@ -2,34 +2,36 @@
 const userLibrary = [];
 const libraryContainer = document.getElementById('booksContainer');
 const mainForm = document.getElementById('mainForm');
-const removeBookButtons = document.getElementsByClassName('libraryRemoveBook');
-var haveAddedBooks = false;
+const modal = document.getElementById('modal');
+const booksMessage = document.getElementById('booksMessage');
+
+let haveAddedBooks = false;
 
  // Object constructor for creating a new book
 function addBook(author, title, pages) {
     this.author = author
     this.title = title
     this.pages = pages
+
 };
 
-// Opens modal and inputs book title when user clicks right-arrow icon
+// Opens modal and inputs book information
 document.getElementById('mainForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting normally
     
+    // Sets main form display to none so it doesn't overlap on page
     mainForm.style.display = 'none';
 
     // Sets modal's form text to be user's input for the book title
-    var bookTitle = document.getElementById('mainFormInput').value;
+    const bookTitle = document.getElementById('mainFormInput').value;
     document.getElementById('bookTitle').textContent = bookTitle;
 
     // Adjusts modal display style to be visible
-    var modal = document.getElementById('modal');
     modal.style.display = 'block';
 });
 
 // Closes modal and resets forms
 document.getElementById('closeModal').addEventListener('click', function() {
-    var modal = document.getElementById('modal');
     modal.style.display = 'none';
     mainForm.style.display = 'flex';
     document.getElementById('mainForm').reset();
@@ -37,76 +39,105 @@ document.getElementById('closeModal').addEventListener('click', function() {
 });
 
 // Adds book to library
-function addBookToLibrary(){
-    // Grabs current book's information
-    var bookTitle = document.getElementById('bookTitle').textContent;
-    var bookAuthor = document.getElementById('bookAuthor').value;
-    var bookPageCount = document.getElementById('bookPageCount').value;
+function addBookToArray(){
+
+    // Creates new book object
+    const bookAuthor = document.getElementById('bookAuthor').value;
+    const bookTitle = document.getElementById('bookTitle').textContent;
+    const bookPageCount = document.getElementById('bookPageCount').value;
+    const newBook = new addBook(bookAuthor, bookTitle, bookPageCount);
+
+    // Adds book to library
+    userLibrary.push(newBook);
 
     // Removes placeholder book elements
-    if(haveAddedBooks == false){
+    if (haveAddedBooks == false){
+        haveAddedBooks = true; 
         while (libraryContainer.firstChild) {
             libraryContainer.removeChild(libraryContainer.firstChild);
         }
     }
+};
 
-    // Updates haveAddedBooks value so placeholder books are no longer being attempted to remove
-    haveAddedBooks = true; 
+// Adds book to library
+function addBookToDOM(){
+    // Grabs current book's information
+    const currentBookIndex = userLibrary.length - 1;
+    const currentBookAuthor = userLibrary[currentBookIndex].author;
+    const currentBookTitle = userLibrary[currentBookIndex].title;
+    const currentBookPageCount = userLibrary[currentBookIndex].pages;
 
-    // Adds book to library and updates DOM
-    const libraryBook = document.createElement('div');
-    libraryBook.classList.add('book');
+    // Creates visual for current book in the user's library
+    // Book's card
+    const bookCardContainer = document.createElement('div');
+    bookCardContainer.classList.add('book');
+    libraryContainer.appendChild(bookCardContainer);
 
-    bookInfo = [bookTitle,bookAuthor,bookPageCount] // Current book's info
-    libraryBookIDs = ['libraryBookTitle', 'libraryBookAuthor', 'libraryBookPageCount']; // Library book IDs for styling
+    // Card's title
+    const bookCardTitle = document.createElement('div');
+    bookCardTitle.textContent = currentBookTitle;
+    bookCardTitle.setAttribute('id', 'libraryBookTitle');
+    bookCardContainer.appendChild(bookCardTitle);
 
-    // Adds information to libraryBook with corresponding IDs for styling (title, author, page count)
-    for (let i = 0 ; i < 3 ; i++){
+    // Card's content container
+    const bookCardContent = document.createElement('div');
+    bookCardContent.setAttribute('id', 'libraryBookContent');
+    bookCardContainer.appendChild(bookCardContent);
 
-        // Creates the library book div
-        var libraryBookInfo = document.createElement('div');
-        libraryBookInfo.setAttribute('id', libraryBookIDs[i]);
-        
-        if (i == 0){
-            libraryBookInfo.textContent = bookInfo[i] // add title text content 
-            libraryBook.appendChild(libraryBookInfo); // add info to library book
-
-        } else if (i == 1){
-            libraryBookInfo.textContent = bookInfo[i]; // add author text content
-
-            // Create section in library book dedicated to book's info (author, pages, etc.)
-            var libraryBookDescContainer = document.createElement('div');
-            libraryBookDescContainer.setAttribute('id', 'libraryBookDescContainer');
-            libraryBook.appendChild(libraryBookDescContainer);
-            libraryBookDescContainer.appendChild(libraryBookInfo); // adds book info to dedicated section
-
-        } else if (i == 2){
-            libraryBookInfo.textContent = bookInfo[i] + ' pages'; // add page text content
-            libraryBookDescContainer.appendChild(libraryBookInfo); // adds book info to dedicated section
-        }
-    }
-
-    // Adds libraryBook to user's library
-    libraryContainer.appendChild(libraryBook);
+    // Card's content (author, pages, etc)
+        // Author
+    const bookCardAuthor = document.createElement('div');
+    bookCardAuthor.textContent = currentBookAuthor;
+    bookCardAuthor.setAttribute('id', 'libraryBookAuthor');
+    bookCardContent.appendChild(bookCardAuthor);
+        // Page count
+    const bookCardPageCount = document.createElement('div');
+    bookCardPageCount.textContent = currentBookPageCount + ' pages';
+    bookCardPageCount.setAttribute('id', 'libraryBookPageCount');
+    bookCardContent.appendChild(bookCardPageCount);
+        // Remove button
+    const removeIcon = document.createElement('i');
+    removeIcon.className = 'fa-solid fa-trash-can'; 
+    bookCardContent.appendChild(removeIcon);
 };
 
 // Submits modal form, adding book to user library, and resets forms
 document.getElementById('modalForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting normally
 
-    // Grabs relavent elements by ID and assigns to variables
-    var modal = document.getElementById('modal');
-    var bookTitle = document.getElementById('bookTitle').textContent;
-    var bookAuthor = document.getElementById('bookAuthor').value;
-    var bookPageCount = document.getElementById('bookPageCount').value;
+    // Adds book to user library
+    addBookToArray();
+    addBookToDOM();
 
-    // Adds book to library
-    addBook(bookAuthor, bookTitle, bookPageCount);
-    addBookToLibrary();
-
-    // Updates modal display to none and resets forms
+    // Updates element displays and resets forms
+    booksMessage.style.display = 'none';
     modal.style.display = 'none';
     mainForm.style.display = 'flex';
     document.getElementById('mainForm').reset();
     document.getElementById('modalForm').reset();
+
 });
+
+// Allows user to remove books
+document.getElementById('booksContainer').addEventListener('click', function(event){
+    if(event.target && event.target.matches('.fa-trash-can')) {
+
+        // Creates a list of books in the DOM 
+        const libraryBooksInDOM = Array.from(libraryContainer.children);
+
+        // Selects the current book container element and index
+        const selectedLibraryBook = event.target.parentElement.parentElement;
+        const selectedLibraryBookIndex = libraryBooksInDOM.indexOf(selectedLibraryBook);
+
+        // Removes the book from DOM and userLibrary array
+        userLibrary.splice(selectedLibraryBookIndex, 1);
+        selectedLibraryBook.remove();
+
+        // Displays message in library if user has no books added
+        if(userLibrary.length == 0){
+            booksMessage.style.display = 'block';
+        }
+    }
+
+});
+
