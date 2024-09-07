@@ -26,8 +26,12 @@
                 <form id="modalForm">
                     <input class="modalFormInput" type="text" id="bookAuthor" placeholder="Author" required>
                     <input class="modalFormInput" type="number" id="bookPageCount" placeholder="Page Count" required>
+                    <div class="modalFormCheckbox">
+                        <input type="checkbox" id="bookRead" name="bookRead">
+                        <label for="bookRead">Read</label>
+                    </div>
                     <button type="submit" id="modalFormSubmit">
-                        Add Book <i class="fa-solid fa-bookmark"></i>
+                        Add Book <i class="fa-solid fa-plus"></i>
                     </button>        
                 </form>
             </div>
@@ -35,7 +39,7 @@
     </div>
 
     <!-- Main content -->
-    <main>
+    <main id="main">
         <div id="heroContainer">
             <div id="heroTitle">Bookify</div>
             <div id="heroCaption">Track Your Reading Journey.</div>
@@ -49,11 +53,14 @@
             <div id="booksMessage">Hmm... you don't seem to have any books yet.</div>
             <div id="booksContainer">
                 <div class="book">
-                    <div id="libraryBookTitle">Title</div>
-                    <div id="libraryBookContent">
-                        <div id="libraryBookAuthor">Author</div>
-                        <div id="libraryBookPageCount">Page Count</div>
-                        <i class="fa-solid fa-trash-can"></i>
+                    <div class="libraryBookTitle">Title</div>
+                    <div class="libraryBookContent">
+                        <div class="libraryBookAuthor">Author</div>
+                        <div class="libraryBookPageCount">Page Count</div>
+                    </div>
+                    <div class="libraryIconsContainer">
+                        <i class="animatedButton fa-regular fa-bookmark"></i>
+                        <i class="animatedButton fa-regular fa-trash-can"></i>
                     </div>
                 </div>
             </div>

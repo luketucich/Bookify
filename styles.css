@@ -19,7 +19,7 @@ body {
     box-sizing: border-box;
     text-align: center;
     background:
-        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), 
+        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), 
         url('background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -112,6 +112,11 @@ main{
     font-weight: 300;
 }
 
+#booksMessage{
+    font-weight: 300;
+    display: none;
+}
+
 #booksContainer{
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -123,16 +128,16 @@ main{
 .book{
     display: grid;
     overflow: hidden;
-    align-items: center;
     background-color: rgba(255, 255, 255, 0.8);
-    grid-template-rows: 0.5fr 3fr;
+    grid-template-rows: 0.5fr 2fr 0.5fr;
     width: 15rem;
-    height: 20rem;
     border-radius: 1rem;
     font-size: 2rem;
     font-weight: 300;
     color: var(--primary);
     transition: 1s;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .book:hover{
@@ -141,23 +146,50 @@ main{
     transition: 0.5s;
 }
 
-#libraryBookTitle{
+.libraryBookTitle{
+    grid-row: 1 / 2;
     padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-overflow: ellipsis;
     font-weight: 300;
-    background-color: rgba(79, 79, 79, 0.6);
-    color: var(--primary);
+    background-color: rgba(24, 24, 24, 0.6);
+    color: var(--secondary);
 }
 
-#libraryBookContent{
+.libraryBookContent{
+    padding-top: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    grid-row: 2 / 3;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.libraryBookPageCount, .libraryBookAuthor{
+    font-weight: 250;
+}
+
+.libraryBookPageCount{
+    padding-bottom: 1rem;
+}
+
+.libraryIconsContainer{
+    width: 13rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    grid-row: 3 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    color: rgb(102, 102, 102);
+}
+
+.fa-bookmark{
+    width: fit-content;
+}
+
 .fa-trash-can{
-    color: rgb(48, 48, 48);
-    cursor: pointer;
-    font-size: 2rem;
     width: fit-content;
 }
 
@@ -169,7 +201,7 @@ main{
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 #modalWindow {
@@ -191,24 +223,20 @@ main{
     gap: 1rem;
     height: 90%;
     width: 100%;
-    padding-top: 3rem;
+    padding-top: 1rem;
 }
 
 #bookTitle{
-    font-size: 2rem;
+    font-size: 3rem;
     white-space: nowrap; 
     color: var(--primary);
     font-weight: 500;
-    cursor: pointer;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+    margin-bottom: 1rem;
 }
 
-#booksMessage{
-    font-weight: 300;
-    display: none;
-}
 #modalForm{
     width: 100%;
     display: flex;
@@ -221,15 +249,32 @@ main{
 .modalFormInput{
     width: calc(100% - 10rem);
     font-size: 1.5rem;
-    font-weight: 300;
+    font-weight: 400;
     text-align: center;
     border: 0.1rem solid;
     border-radius: 1rem;
-    padding: 0.5rem 0;
-    transition: 1s;
+    padding: 0.5rem;
+    outline: none;
 }
 
+.modalFormCheckbox{
+    color: var(--primary);
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+input[type="checkbox"]{
+    color: gray;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+
 #modalFormSubmit{
+    position: relative;
+    top: 30%;
     background-color: var(--secondary);
     color: var(--primary);
     border-radius: 1rem;
@@ -237,11 +282,13 @@ main{
     font-size: 1.5rem;
     font-weight: 500;
     padding: 1rem 2rem 1rem 2rem;
+    transition: 1s;
 }
 
 #modalFormSubmit:hover{
     cursor: pointer;
-    padding: 1.2rem 2.2rem 1.2rem 2.2rem;
+    transition: 0.5s;
+    transform: scale(1.2);
     background-color: var(--primary);
     color: var(--secondary);
 }
