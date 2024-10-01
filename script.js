@@ -1,22 +1,9 @@
 // Initalizes library to store user's collection of books
-const userLibrary = [];
 const libraryContainer = document.getElementById("booksContainer");
 const mainForm = document.getElementById("mainForm");
 const modal = document.getElementById("modal");
 const booksMessage = document.getElementById("booksMessage");
 const main = document.getElementById("main");
-
-let haveAddedBooks = false;
-
-// Class for creating a new book
-class Book {
-  constructor(author, title, pages, read) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.read = read;
-  }
-}
 
 // Opens modal and inputs book information
 document
@@ -43,35 +30,47 @@ document.getElementById("closeModal").addEventListener("click", function () {
   document.getElementById("modalForm").reset();
 });
 
-// Adds book to library
-function addBookToArray() {
-  // Creates new book object
-  const bookAuthor = document.getElementById("bookAuthor").value;
-  const bookTitle = document.getElementById("bookTitle").textContent;
-  const bookPageCount = document.getElementById("bookPageCount").value;
-  const bookRead = document.getElementById("bookRead").checked;
-  const newBook = new Book(bookAuthor, bookTitle, bookPageCount, bookRead);
+// Class for creating a new book
+class Book {
+  constructor(author, title, pages, read) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.read = read;
+  }
+}
 
-  // Adds book to library
-  userLibrary.push(newBook);
+// Class for creating a library of books
+class Library {
+  constructor() {
+    this.userLibrary = [];
+    this.haveAddedBooks = false;
+  }
 
-  // Removes placeholder book elements
-  if (haveAddedBooks == false) {
-    haveAddedBooks = true;
-    while (libraryContainer.firstChild) {
-      libraryContainer.removeChild(libraryContainer.firstChild);
+  addBook(author, title, pages, read) {
+    const newBook = new Book(author, title, pages, read);
+    this.userLibrary.push(newBook);
+
+    if (!this.haveAddedBooks) {
+      this.haveAddedBooks = true;
+      while (libraryContainer.firstChild) {
+        libraryContainer.removeChild(libraryContainer.firstChild);
+      }
     }
   }
 }
 
+// Initializes user's library
+const library = new Library();
+
 // Adds book to library
 function addBookToDOM() {
   // Grabs current book's information
-  const currentBookIndex = userLibrary.length - 1;
-  const currentBookAuthor = userLibrary[currentBookIndex].author;
-  const currentBookTitle = userLibrary[currentBookIndex].title;
-  const currentBookPageCount = userLibrary[currentBookIndex].pages;
-  const currentBookRead = userLibrary[currentBookIndex].read;
+  const currentBookIndex = library.userLibrary.length - 1;
+  const currentBookAuthor = library.userLibrary[currentBookIndex].author;
+  const currentBookTitle = library.userLibrary[currentBookIndex].title;
+  const currentBookPageCount = library.userLibrary[currentBookIndex].pages;
+  const currentBookRead = library.userLibrary[currentBookIndex].read;
 
   // Creates visual for current book in the user's library
   // Book's card
@@ -129,8 +128,13 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the form from submitting normally
 
+    const bookAuthor = document.getElementById("bookAuthor").value;
+    const bookTitle = document.getElementById("bookTitle").textContent;
+    const bookPageCount = document.getElementById("bookPageCount").value;
+    const bookRead = document.getElementById("bookRead").checked;
+
     // Adds book to user library
-    addBookToArray();
+    library.addBook(bookAuthor, bookTitle, bookPageCount, bookRead);
     addBookToDOM();
 
     // Updates element displays and resets forms
@@ -155,11 +159,11 @@ document
         libraryBooksInDOM.indexOf(selectedLibraryBook);
 
       // Removes the book from DOM and userLibrary array
-      userLibrary.splice(selectedLibraryBookIndex, 1);
+      library.userLibrary.splice(selectedLibraryBookIndex, 1);
       selectedLibraryBook.remove();
 
       // Displays message in library if user has no books added
-      if (userLibrary.length == 0) {
+      if (library.userLibrary.length == 0) {
         booksMessage.style.display = "block";
       }
     }
@@ -189,10 +193,10 @@ document
 
       // Read value will only be updated on non-placeholder books
       try {
-        if (userLibrary[selectedLibraryBookIndex].read == true) {
-          userLibrary[selectedLibraryBookIndex].read = false;
+        if (library.userLibrary[selectedLibraryBookIndex].read == true) {
+          library.userLibrary[selectedLibraryBookIndex].read = false;
         } else {
-          userLibrary[selectedLibraryBookIndex].read = true;
+          library.userLibrary[selectedLibraryBookIndex].read = true;
         }
       } catch (error) {
         console.log("This is a placeholder book.");
