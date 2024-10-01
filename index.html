@@ -1,70 +1,115 @@
 <!DOCTYPE html>
 <html lang="en" spellcheck="false">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="styles.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/9612a991fa.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="favicon_io/site.webmanifest">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="styles.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/9612a991fa.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon_io/site.webmanifest" />
     <script src="script.js" defer></script>
     <title>Bookify</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Modal -->
     <div id="modal">
-        <div id="modalWindow">
-            <i id="closeModal" class="animatedButton fa-solid fa-right-from-bracket"></i>
-            <div id="modalFormContainer">
-                <p id="bookTitle"></p>
-                <form id="modalForm">
-                    <input class="modalFormInput" type="text" id="bookAuthor" placeholder="Author" required>
-                    <input class="modalFormInput" type="number" id="bookPageCount" placeholder="Page Count" required>
-                    <div class="modalFormCheckbox">
-                        <input type="checkbox" id="bookRead" name="bookRead">
-                        <label for="bookRead">Read</label>
-                    </div>
-                    <button type="submit" id="modalFormSubmit">
-                        Add Book <i class="fa-solid fa-plus"></i>
-                    </button>        
-                </form>
+      <div id="modalWindow">
+        <i
+          id="closeModal"
+          class="animatedButton fa-solid fa-right-from-bracket"
+        ></i>
+        <div id="modalFormContainer">
+          <p id="bookTitle"></p>
+          <form id="modalForm">
+            <input
+              class="modalFormInput"
+              type="text"
+              id="bookAuthor"
+              placeholder="Author"
+              required
+            />
+            <input
+              class="modalFormInput"
+              type="number"
+              id="bookPageCount"
+              placeholder="Page Count"
+              required
+            />
+            <div class="modalFormCheckbox">
+              <input type="checkbox" id="bookRead" name="bookRead" />
+              <label for="bookRead">Read</label>
             </div>
+            <button type="submit" id="modalFormSubmit">
+              Add Book <i class="fa-solid fa-plus"></i>
+            </button>
+          </form>
         </div>
+      </div>
     </div>
 
     <!-- Main content -->
     <main id="main">
-        <div id="heroContainer">
-            <div id="heroTitle">Bookify</div>
-            <div id="heroCaption">Track Your Reading Journey.</div>
+      <div id="heroContainer">
+        <div id="heroTitle">Bookify</div>
+        <div id="heroCaption">Track Your Reading Journey.</div>
+      </div>
+      <form id="mainForm">
+        <input
+          type="text"
+          name="bookTitle"
+          id="mainFormInput"
+          placeholder="Enter book title"
+          required
+        />
+        <button type="submit" id="mainFormSubmit">
+          <i class="animatedButton fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+      <div id="userBooks">
+        <div id="booksHeader">Your Library</div>
+        <div id="booksMessage">
+          Hmm... you don't seem to have any books yet.
         </div>
-        <form id="mainForm">
-            <input type="text" name="bookTitle" id="mainFormInput" placeholder="Enter book title" required>
-            <button type="submit" id="mainFormSubmit"><i class="animatedButton fa-solid fa-arrow-right"></i></button>
-        </form>
-        <div id="userBooks">
-            <div id="booksHeader">Your Library</div>
-            <div id="booksMessage">Hmm... you don't seem to have any books yet.</div>
-            <div id="booksContainer">
-                <div class="book">
-                    <div class="libraryBookTitle">Title</div>
-                    <div class="libraryBookContent">
-                        <div class="libraryBookAuthor">Author</div>
-                        <div class="libraryBookPageCount">Page Count</div>
-                    </div>
-                    <div class="libraryIconsContainer">
-                        <i class="animatedButton fa-regular fa-bookmark"></i>
-                        <i class="animatedButton fa-regular fa-trash-can"></i>
-                    </div>
-                </div>
+        <div id="booksContainer">
+          <div class="book">
+            <div class="libraryBookTitle">Title</div>
+            <div class="libraryBookContent">
+              <div class="libraryBookAuthor">Author</div>
+              <div class="libraryBookPageCount">Page Count</div>
             </div>
+            <div class="libraryIconsContainer">
+              <i class="animatedButton fa-regular fa-bookmark"></i>
+              <i class="animatedButton fa-regular fa-trash-can"></i>
+            </div>
+          </div>
         </div>
+      </div>
     </main>
-</body>
+  </body>
 </html>
